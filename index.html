@@ -6,32 +6,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-/* ========== ANIMATIONS ========== */
-@keyframes neonGlow{
-  0%{box-shadow:0 0 12px #22d3ee}
-  50%{box-shadow:0 0 30px #6366f1,0 0 60px #22d3ee}
-  100%{box-shadow:0 0 12px #22d3ee}
-}
-@keyframes float{
-  0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-8px)}
-}
-@keyframes starsMove{
-  from{background-position:0 0}
-  to{background-position:0 1000px}
-}
-
-/* ========== BACKGROUND + STARS ========== */
+/* =====================================================
+   GLOBAL RESET + FONT
+   ===================================================== */
+*{box-sizing:border-box}
 body{
   margin:0;
   min-height:100vh;
-  font-family:Segoe UI,sans-serif;
+  font-family:Segoe UI, sans-serif;
   background:#020617;
   color:#fff;
   display:flex;
   justify-content:center;
   align-items:center;
   overflow:hidden;
+}
+
+/* =====================================================
+   STAR BACKGROUND ANIMATION
+   ===================================================== */
+@keyframes starsMove{
+  from{background-position:0 0}
+  to{background-position:0 1200px}
 }
 body::before{
   content:"";
@@ -43,17 +39,35 @@ body::before{
     radial-gradient(1px 1px at 60% 40%,#fff,transparent),
     radial-gradient(2px 2px at 80% 60%,#fff,transparent);
   background-size:300px 300px;
-  animation:starsMove 60s linear infinite;
+  animation:starsMove 70s linear infinite;
   opacity:.35;
 }
 
-/* ========== CARD ========== */
+/* =====================================================
+   WRAPPER + BIO (OUTSIDE CARD)
+   ===================================================== */
 .wrapper{
   display:flex;
   flex-direction:column;
   align-items:center;
   gap:18px;
   z-index:1;
+}
+.bio{
+  max-width:420px;
+  text-align:center;
+  font-size:13px;
+  color:#a5b4fc;
+  line-height:1.6;
+}
+
+/* =====================================================
+   CARD + GLOW
+   ===================================================== */
+@keyframes neonGlow{
+  0%{box-shadow:0 0 12px #22d3ee}
+  50%{box-shadow:0 0 35px #6366f1,0 0 60px #22d3ee}
+  100%{box-shadow:0 0 12px #22d3ee}
 }
 .card{
   width:92%;
@@ -64,37 +78,43 @@ body::before{
   text-align:center;
   animation:neonGlow 3.5s infinite;
 }
-  /* ===== BIO OUTSIDE CARD ===== */
-.bio{
-  max-width:420px;
-  text-align:center;
-  font-size:13px;
-  color:#a5b4fc;
-  line-height:1.6;
-  opacity:.9;
-}
 
-/* ========== PROFILE ========== */
+/* =====================================================
+   PROFILE FLOAT
+   ===================================================== */
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-8px)}
+}
 .profile{animation:float 3s ease-in-out infinite}
 .profile img{
-  width:120px;height:120px;
+  width:120px;
+  height:120px;
   border-radius:50%;
   border:3px solid #22d3ee;
   object-fit:cover;
 }
 
-/* ========== NAME GLOW ========== */
+/* =====================================================
+   NAME + TAGLINE
+   ===================================================== */
 h1{
   margin:14px 0 6px;
   font-size:20px;
   text-shadow:
     0 0 6px rgba(34,211,238,.6),
-    0 0 14px rgba(99,102,241,.5),
-    0 0 22px rgba(168,85,247,.4);
+    0 0 16px rgba(99,102,241,.6),
+    0 0 26px rgba(168,85,247,.5);
 }
-.tagline{color:#a5b4fc;font-size:14px;margin-bottom:22px}
+.tagline{
+  color:#a5b4fc;
+  font-size:14px;
+  margin-bottom:22px;
+}
 
-/* ========== BUTTONS ========== */
+/* =====================================================
+   BUTTON BASE STYLE
+   ===================================================== */
 .btn{
   display:flex;
   align-items:center;
@@ -115,25 +135,45 @@ h1{
   box-shadow:0 0 22px currentColor;
 }
 
-/* ICON GLOW */
+/* =====================================================
+   ICON STYLE
+   ===================================================== */
 .icon{
   width:22px;
   height:22px;
   fill:currentColor;
-  filter:drop-shadow(0 0 5px currentColor);
+  filter:drop-shadow(0 0 6px currentColor);
 }
 
-.ɪɴsᴛᴀɢʀᴀᴍ{color:#f472b6}
-.ᴛᴇʟᴇɢʀᴀᴍ{color:#38bdf8}
-.ɢɪᴛʜᴜʙ{color:#e5e7eb}
-.notify{color:#22d3ee}
-/* ========== FREE FIRE BUTTON ========== */
+/* =====================================================
+   PLATFORM COLORS
+   ===================================================== */
+.instagram{color:#f472b6}
+.telegram{color:#38bdf8}
+.github{color:#e5e7eb}
 .freefire{
-  color:#facc15;
-  background:linear-gradient(135deg,#78350f,#1f1300);
+  color:#ef4444;
+  background:linear-gradient(135deg,#7c2d12,#1f1300);
+}
+.notify{color:#22d3ee}
+
+/* =====================================================
+   COUNTER + COPYRIGHT
+   ===================================================== */
+.counter{
+  margin-top:18px;
+  color:#22d3ee;
+  font-size:14px;
+}
+.copyright{
+  margin-top:8px;
+  font-size:12px;
+  text-shadow:0 0 8px #22d3ee;
 }
 
-/* ========== POPUP ========== */
+/* =====================================================
+   POPUP BASE
+   ===================================================== */
 .popup{
   position:fixed;
   inset:0;
@@ -149,42 +189,23 @@ h1{
   background:#0b1220;
   border-radius:20px;
   padding:20px;
-  border:2px solid #facc15;
-  box-shadow:0 0 30px #facc15;
   text-align:center;
-}
-.popup-box img{
-  width:100%;
-  border-radius:14px;
-  margin-top:12px;
 }
 .close{
   margin-top:14px;
   padding:10px;
-  border:none;
   width:100%;
+  border:none;
   border-radius:12px;
-  background:#facc15;
-  color:#000;
   font-weight:700;
+  background:#22d3ee;
+  color:#000;
 }
-/* ===== INSTAGRAM FOLLOW POPUP ===== */
-#instaPopup .popup-box{color:#f472b6}
-
-/* ===== COPYRIGHT ===== */
-.copyright{
-  margin-top:6px;
-  font-size:12px;
-  text-shadow:0 0 8px #22d3ee;
-}
-  
-/* ========== COUNTER ========== */
-.counter{margin-top:18px;color:#22d3ee;font-size:14px}
-footer{margin-top:18px;font-size:12px;color:#94a3b8}
 </style>
 </head>
 
 <body>
+
 <div class="wrapper">
 
   <!-- BIO OUTSIDE CARD -->
@@ -193,17 +214,20 @@ footer{margin-top:18px;font-size:12px;color:#94a3b8}
     I build cool web stuff and play Free Fire.  
     Connect with me below 👇
   </div>
-  
-<div class="card">
 
-  <div class="profile">
-    <img src="profile.jpg" alt="Harry">
-  </div>
+  <!-- MAIN CARD -->
+  <div class="card">
 
-  <h1>𓆩◕🅷︎𝐀𝐑𝐑𝐘◕𓆪 =‌𐏓 𝄗⃝🇮🇳</h1>
-  <div class="tagline">sᴛᴜᴅᴇɴᴛ • ᴄᴏᴅᴇʀ • ɢᴀᴍᴇʀ</div>
+    <!-- PROFILE -->
+    <div class="profile">
+      <img src="profile.jpg" alt="Harry">
+    </div>
 
-  <!-- INSTAGRAM -->
+    <!-- NAME -->
+    <h1>𓆩◕🅷︎𝐀𝐑𝐑𝐘◕𓆪 =‌𐏓 𝄗⃝🇮🇳</h1>
+    <div class="tagline">sᴛᴜᴅᴇɴᴛ • ᴄᴏᴅᴇʀ • ɢᴀᴍᴇʀ</div>
+
+    !-- INSTAGRAM -->
   <a class="btn ɪɴsᴛᴀɢʀᴀᴍ" href="https://www.instagram.com/harryashu_/" target="_blank">
     <svg class="icon" viewBox="0 0 24 24">
       <path d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm10 2c1.65 0 3 1.35 3 3v10c0 1.65-1.35 3-3 3H7c-1.65 0-3-1.35-3-3V7c0-1.65 1.35-3 3-3h10zm-5 3a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6zm4.8-.9a1.1 1.1 0 11-2.2 0 1.1 1.1 0 012.2 0z"/>
@@ -228,7 +252,7 @@ footer{margin-top:18px;font-size:12px;color:#94a3b8}
     ɢ ɪ ᴛ ʜ ᴜ ʙ
   </a>
 
-  <!-- FREE FIRE BUTTON WITH ORIGINAL LOGO -->
+      <!-- FREE FIRE BUTTON WITH ORIGINAL LOGO -->
 <div class="btn freefire" onclick="openFF()" style="color:#ef4444">
   <!-- GARÉNA LOGO -->
   <svg class="icon" viewBox="0 0 384 512">
@@ -236,68 +260,74 @@ footer{margin-top:18px;font-size:12px;color:#94a3b8}
       d="M224 32C100.3 32 0 125.1 0 240c0 92.8 66.2 171.3 157.2 197.7 12.5 2.3 17.1-5.4 17.1-12v-42.1c-63.9 13.9-77.4-30.8-77.4-30.8-10.5-26.6-25.7-33.7-25.7-33.7-21-14.3 1.6-14 1.6-14 23.3 1.6 35.6 23.9 35.6 23.9 20.7 35.4 54.3 25.2 67.6 19.3 2.1-15 8.1-25.2 14.8-31-51-5.7-104.6-25.5-104.6-113.5 0-25.1 8.9-45.6 23.5-61.7-2.3-5.7-10.2-28.7 2.3-59.8 0 0 19.1-6.1 62.6 23.6 18.2-4.9 37.6-7.4 56.9-7.5 19.3.1 38.7 2.6 56.9 7.5 43.5-29.7 62.5-23.6 62.5-23.6 12.6 31.1 4.7 54.1 2.3 59.8 14.6 16.1 23.4 36.6 23.4 61.7 0 88.2-53.7 107.7-104.8 113.3 8.3 7.1 15.7 21.2 15.7 42.7v63.3c0 6.7 4.5 14.4 17.3 11.9C317.9 411.2 384 332.7 384 240 384 125.1 283.7 32 160 32z"/>
   </svg>
   Garena • Free Fire
-</a>
+</div>
 
-    <div class="btn notify" onclick="openNotify()">🔔 ɴᴏᴛɪғʏ ᴍᴇ</div>
+    <!-- NOTIFY -->
+    <div class="btn notify" onclick="openNotify()">
+      🔔 ɴᴏᴛɪғʏ ᴍᴇ
+    </div>
 
+    <!-- VISITOR COUNTER -->
     <div class="counter">🌍 Visitors: <span id="count">0</span></div>
 
+    <!-- COPYRIGHT -->
     <div class="copyright">© 2026 ʜᴀʀʀʏ ᴀsʜᴜ</div>
+
   </div>
 </div>
 
-<!-- POPUP -->
+<!-- FREE FIRE POPUP -->
 <div class="popup" id="ffPopup">
   <div class="popup-box">
-    <h3>🔥 ғʀᴇᴇ ғɪʀᴇ ᴘʀᴏғɪʟᴇ</h3>
+    <h3>🔥 Free Fire Profile</h3>
     <p>UID: <b>605458977</b></p>
-    <img src="ff.jpg" alt="Free Fire UID Screenshot">
     <button class="close" onclick="closeFF()">Close</button>
   </div>
 </div>
+
 <!-- NOTIFY POPUP -->
 <div class="popup" id="notifyPopup">
-  <div class="popup-box" style="color:#22d3ee">
-    <h3>📩 Send Message</h3>
-    <form action="https://formsubmit.co/YOUR_EMAIL@gmail.com" method="POST">
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <textarea name="message" placeholder="Your Message"></textarea>
-      <button type="submit">Send</button>
-    </form>
-    <button onclick="closeNotify()">Close</button>
-  </div>
-</div>
-
-<!-- INSTAGRAM FOLLOW POPUP -->
-<div class="popup" id="instaPopup">
   <div class="popup-box">
-    <h3>📸 Follow on Instagram</h3>
-    <p>@harryashu_</p>
-    <a class="btn instagram" href="https://www.instagram.com/harryashu_" target="_blank">Follow Now</a>
-    <button onclick="closeInsta()">Later</button>
+    <h3>📩 Send Message</h3>
+    <p>DM me on Instagram 👇</p>
+    <a class="btn instagram" href="https://www.instagram.com/harryashu_/" target="_blank">
+      Open Instagram
+    </a>
+    <button class="close" onclick="closeNotify()">Close</button>
   </div>
 </div>
-<script>
-function openFF(){document.getElementById("ffPopup").style.display="flex"}
-function closeFF(){document.getElementById("ffPopup").style.display="none"}
-function openNotify(){notifyPopup.style.display="flex"}
-function closeNotify(){notifyPopup.style.display="none"}
-function closeInsta(){instaPopup.style.display="none"}
 
-setTimeout(()=>{instaPopup.style.display="flex"},2000)
-  
-/* GLOBAL VISITOR COUNTER */
 <script>
-let visits = localStorage.getItem("harry_visits");
-
-if (!visits) {
-  visits = 1;
-  localStorage.setItem("harry_visits", visits);
-} else {
-  visits = parseInt(visits);
+/* =====================================================
+   FREE FIRE POPUP FUNCTIONS
+   ===================================================== */
+function openFF(){
+  document.getElementById("ffPopup").style.display="flex";
+}
+function closeFF(){
+  document.getElementById("ffPopup").style.display="none";
 }
 
+/* =====================================================
+   NOTIFY POPUP FUNCTIONS
+   ===================================================== */
+function openNotify(){
+  document.getElementById("notifyPopup").style.display="flex";
+}
+function closeNotify(){
+  document.getElementById("notifyPopup").style.display="none";
+}
+
+/* =====================================================
+   VISITOR COUNTER (STABLE)
+   ===================================================== */
+let visits = localStorage.getItem("harry_visits");
+if(visits === null){
+  visits = 1;
+}else{
+  visits = parseInt(visits) + 1;
+}
+localStorage.setItem("harry_visits", visits);
 document.getElementById("count").innerText = visits;
 </script>
 
