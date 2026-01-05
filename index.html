@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <title>Harry | Official Links</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Official social links of Harry">
 
 <style>
 /* ========== ANIMATIONS ========== */
@@ -17,26 +16,43 @@
   0%,100% { transform: translateY(0); }
   50% { transform: translateY(-8px); }
 }
-@keyframes bgMove{
-  0%{ background-position: 0% 0%, 100% 0%, 50% 100%; }
-  100%{ background-position: 100% 100%, 0% 100%, 50% 0%; }
+@keyframes starsMove {
+  from { background-position: 0 0; }
+  to { background-position: 0 1000px; }
 }
 
-/* ========== BACKGROUND ========== */
+/* ========== BODY + STARS BACKGROUND ========== */
 body{
   margin:0;
   min-height:100vh;
   font-family:Segoe UI,sans-serif;
-  background:
-    radial-gradient(circle at 20% 30%, rgba(99,102,241,.35), transparent 45%),
-    radial-gradient(circle at 80% 20%, rgba(34,211,238,.35), transparent 45%),
-    radial-gradient(circle at 50% 80%, rgba(168,85,247,.35), transparent 45%),
-    linear-gradient(180deg,#020617,#000);
-  animation:bgMove 22s ease-in-out infinite alternate;
   color:white;
   display:flex;
   justify-content:center;
   align-items:center;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(99,102,241,.35), transparent 45%),
+    radial-gradient(circle at 80% 20%, rgba(34,211,238,.35), transparent 45%),
+    radial-gradient(circle at 50% 80%, rgba(168,85,247,.35), transparent 45%),
+    #020617;
+  overflow:hidden;
+}
+
+/* STARS LAYER */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background-image:
+    radial-gradient(1px 1px at 20% 30%, #fff, transparent),
+    radial-gradient(1px 1px at 40% 70%, #fff, transparent),
+    radial-gradient(1px 1px at 60% 40%, #fff, transparent),
+    radial-gradient(1px 1px at 80% 60%, #fff, transparent),
+    radial-gradient(2px 2px at 50% 50%, #fff, transparent);
+  background-size:300px 300px;
+  animation:starsMove 60s linear infinite;
+  opacity:.35;
+  pointer-events:none;
 }
 
 /* ========== CARD ========== */
@@ -48,6 +64,8 @@ body{
   padding:32px;
   text-align:center;
   animation:neonGlow 3.5s infinite;
+  position:relative;
+  z-index:1;
 }
 
 /* ========== PROFILE ========== */
@@ -62,7 +80,7 @@ body{
   object-fit:cover;
 }
 
-/* ========== NAME (SOFT GLOW) ========== */
+/* ========== NAME GLOW ========== */
 h1{
   margin:14px 0 6px;
   font-size:20px;
@@ -98,94 +116,64 @@ h1{
   box-shadow:0 0 22px currentColor;
 }
 
-/* ========== ICONS (SOFT GLOW) ========== */
+/* ICON GLOW */
 .icon{
   width:22px;
   height:22px;
   fill:currentColor;
-  filter: drop-shadow(0 0 4px currentColor);
-  transition:.25s;
+  filter:drop-shadow(0 0 5px currentColor);
 }
-.btn:hover .icon{
-  filter: drop-shadow(0 0 9px currentColor);
-}
-
 .instagram{color:#f472b6;}
 .telegram{color:#38bdf8;}
 .github{color:#e5e7eb;}
 
-/* ========== COUNTER ========== */
-.counter{
-  margin-top:18px;
-  font-size:14px;
-  color:#22d3ee;
-}
-
-/* ========== FOOTER ========== */
-footer{
-  margin-top:18px;
-  font-size:12px;
-  color:#94a3b8;
-}
+/* ========== COUNTER + FOOTER ========== */
+.counter{margin-top:18px;color:#22d3ee;font-size:14px;}
+footer{margin-top:18px;font-size:12px;color:#94a3b8;}
 </style>
 </head>
 
 <body>
 
 <div class="card">
-
-  <!-- PROFILE IMAGE -->
   <div class="profile">
     <img src="profile.jpg" alt="Harry">
   </div>
 
-  <!-- NAME -->
-  <h1>𓆩◕🇭𝐀𝐑𝐑𝐘◕𓆪 =‌𐏓 𝄗⃝🇮🇳</h1>
+  <h1>𓆩◕🅷︎𝐀𝐑𝐑𝐘◕𓆪 =‌𐏓 𝄗⃝🇮🇳</h1>
   <div class="tagline">Student • Creator • Developer</div>
 
-<!-- INSTAGRAM -->
+  <!-- INSTAGRAM -->
   <a class="btn instagram" href="https://www.instagram.com/harryashu_/" target="_blank">
     <svg class="icon" viewBox="0 0 24 24">
       <path d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm10 2c1.65 0 3 1.35 3 3v10c0 1.65-1.35 3-3 3H7c-1.65 0-3-1.35-3-3V7c0-1.65 1.35-3 3-3h10zm-5 3a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6zm4.8-.9a1.1 1.1 0 11-2.2 0 1.1 1.1 0 012.2 0z"/>
     </svg>
     Instagram
   </a>
-
-  <!-- TELEGRAM -->
+  
+<!-- TELEGRAM -->
   <a class="btn telegram" href="https://t.me/SANATANI_BACHA" target="_blank">
     <svg class="icon" viewBox="0 0 496 512">
-      <path d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8Zm121.8 169.9-40.7 192.2c-3.1 13.8-11.3 17.2-22.9 10.7l-63.3-46.7-30.5 29.3c-3.4 3.4-6.3 6.3-12.9 6.3l4.6-65.2 118.7-107.2c5.2-4.6-1.1-7.2-8.1-2.6L169.4 285.6l-62.4-19.5c-13.6-4.3-13.8-13.6 2.9-20.1l244.3-94.2c11.3-4.1 21.2 2.7 17.6 20.1Z"/>
-    </svg>
-    Telegram
+      <path d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8Z"/>
+    </svg> Telegram
   </a>
 
   <!-- GITHUB -->
   <a class="btn github" href="https://github.com/SIDHIMUSIC" target="_blank">
     <svg class="icon" viewBox="0 0 496 512">
-      <path d="M248 8C111 8 0 119 0 256c0 110.9 69.8 204.4 166.8 237.7 12.2 2.3 16.6-5.2 16.6-11.6 0-5.6-.3-24.3-.3-44.1-67.8 14.6-82.1-32.7-82.1-32.7-11.1-28.3-27.1-35.8-27.1-35.8-22.1-15.1 1.6-14.8 1.6-14.8 24.3 1.6 37.1 24.9 37.1 24.9 21.6 37.1 56.8 26.4 70.8 20.1 2.3-15.8 8.5-26.4 15.5-32.4-54.1-6.1-111-27.1-111-120.5 0-26.4 9.4-48.1 24.9-65.1-2.6-6.1-11.1-30.5 2.3-63.5 0 0 20.1-6.4 65.8 24.9 19-5.2 39.4-7.8 59.6-7.8s40.6 2.6 59.6 7.8c45.7-31.3 65.8-24.9 65.8-24.9 13.4 33 4.9 57.4 2.3 63.5 15.5 17 24.9 38.7 24.9 65.1 0 93.7-56.8 114.4-111 120.5 8.8 7.5 16.6 22.1 16.6 44.6 0 32.4-.3 58.5-.3 66.5 0 6.4 4.3 14.2 16.9 11.6C426.2 460.4 496 366.9 496 256 496 119 385 8 248 8Z"/>
-    </svg>
-    GitHub
+      <path d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8Z"/>
+    </svg> GitHub
   </a>
 
-  <!-- GLOBAL VISITOR COUNTER -->
-  <div class="counter">
-    🌍 Visitors: <span id="count">0</span>
-  </div>
-
+  <div class="counter">🌍 Visitors: <span id="count">0</span></div>
   <footer>⚡ Powered by Harry • Neon Mode</footer>
-
 </div>
 
 <script>
-/* ===== GLOBAL VISITOR COUNTER (100% WORKING) ===== */
 fetch("https://api.countapi.xyz/create?namespace=harry-links&key=visits&value=1")
-.then(() => {
-  fetch("https://api.countapi.xyz/hit/harry-links/visits")
-    .then(res => res.json())
-    .then(data => {
-      document.getElementById("count").innerText = data.value;
-    });
-});
+.then(()=>fetch("https://api.countapi.xyz/hit/harry-links/visits"))
+.then(res=>res.json())
+.then(d=>document.getElementById("count").innerText=d.value);
 </script>
 
 </body>
