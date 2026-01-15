@@ -13,16 +13,15 @@
 
 body {
   margin: 0;
-  /* MIN-HEIGHT 100vh rakha hai par OVERFLOW HIDDEN hata diya taki scroll ho sake */
   min-height: 100vh;
   font-family: Segoe UI, sans-serif;
   background: #020617;
   color: #fff;
   display: flex;
   justify-content: center;
-  align-items: flex-start; /* Top se start hoga taki kate nahi */
-  padding: 40px 0; /* Thoda gap upar niche */
-  overflow-x: hidden; /* Sirf side ka scroll band, niche ka chalu */
+  align-items: flex-start;
+  padding: 40px 0;
+  overflow-x: hidden;
 }
 
 /* =====================================================
@@ -44,7 +43,7 @@ body::before{
   background-size:300px 300px;
   animation:starsMove 70s linear infinite;
   opacity:.35;
-  pointer-events: none; /* Background click interfere na kare */
+  pointer-events: none;
 }
 
 /* =====================================================
@@ -79,12 +78,12 @@ body::before{
 .card{
   width:92%;
   max-width:420px;
-  background:rgba(2,6,23,.95); /* Thoda dark kiya taki text clear dikhe */
+  background:rgba(2,6,23,.95);
   border-radius:26px;
-  padding:32px 20px; /* Side padding thodi kam ki mobile ke liye */
+  padding:32px 20px;
   text-align:center;
   animation:neonGlow 3.5s infinite;
-  margin-bottom: 20px; /* Niche jagah rahe */
+  margin-bottom: 20px;
 }
 
 .followers{
@@ -191,7 +190,6 @@ body::before{
   font-weight: bold;
   margin-bottom: 8px;
 }
-/* Yeh wo class hai jisme text hoga copy karne ke liye */
 .prompt-content {
   font-size: 12px;
   color: #cbd5e1;
@@ -200,7 +198,7 @@ body::before{
   background: #020617;
   padding: 10px;
   border-radius: 8px;
-  word-wrap: break-word; /* Text overflow na ho */
+  word-wrap: break-word;
 }
 .copy-btn {
   width: 100%;
@@ -243,7 +241,7 @@ body::before{
   background:linear-gradient(135deg,#1e293b,#020617);
   border:1px solid #334155;
   transition:.25s;
-  width: 100%; /* Full width */
+  width: 100%;
 }
 .btn:hover{ transform:scale(1.02); box-shadow:0 0 22px currentColor; }
 .icon{ width:22px; height:22px; filter:drop-shadow(0 0 6px currentColor); }
@@ -270,6 +268,31 @@ body::before{
 
 /* No Results Msg */
 .no-results { display: none; color: #94a3b8; font-size: 14px; margin-top: 10px; }
+
+/* =====================================================
+   TYPEWRITER STYLES (NEW)
+   ===================================================== */
+.tagline {
+  color: #a5b4fc;
+  font-size: 14px;
+  margin-bottom: 22px;
+  height: 20px; /* Fix height taaki jump na kare */
+}
+.typing-text {
+  color: #22d3ee; /* Neon Blue color for changing text */
+  font-weight: bold;
+}
+.cursor {
+  display: inline-block;
+  width: 2px;
+  background-color: #fff;
+  margin-left: 2px;
+  animation: blink 1s infinite;
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
 
 </style>
 </head>
@@ -320,7 +343,10 @@ body::before{
     </div>
 
     <h1>𓆩◕🅷︎𝐀𝐑𝐑𝐘◕𓆪 =‌𐏓 𝄗⃝🇮🇳</h1>
-    <div class="tagline">sᴛᴜᴅᴇɴᴛ • ᴄᴏᴅᴇʀ • ɢᴀᴍᴇʀ</div>
+    
+    <div class="tagline">
+      I am a <span class="typing-text"></span><span class="cursor">|</span>
+    </div>
 
     <div class="tab-container">
       <button class="tab-btn active" onclick="showTab('links')">🔗 Links</button>
@@ -403,18 +429,15 @@ body::before{
 
 <script>
 /* =====================================================
-   FIX 1: SEARCH FUNCTIONALITY
+   SEARCH FUNCTIONALITY
    ===================================================== */
 function filterContent() {
   let input = document.getElementById('searchInput').value.toLowerCase();
-  
-  // Select all items that can be filtered (Buttons & Prompts)
   let items = document.querySelectorAll('.filter-item');
   let visibleCount = 0;
 
   items.forEach(item => {
     if (item.innerText.toLowerCase().includes(input)) {
-      // If prompt box, show block. If btn, show flex.
       if(item.classList.contains('prompt-box')){
         item.style.display = "block";
       } else {
@@ -426,7 +449,6 @@ function filterContent() {
     }
   });
 
-  // Show "No Results" message if nothing matches
   let noRes = document.getElementById("noResults");
   if(visibleCount === 0 && input !== "") {
     noRes.style.display = "block";
@@ -436,16 +458,13 @@ function filterContent() {
 }
 
 /* =====================================================
-   FIX 2: ROBUST COPY FUNCTION
+   COPY FUNCTION
    ===================================================== */
 function copyText(btn) {
-  // Find the text div just before the button
   let textDiv = btn.previousElementSibling; 
   let textToCopy = textDiv.innerText;
 
-  // Use Clipboard API
   navigator.clipboard.writeText(textToCopy).then(() => {
-    // Success Animation
     let originalText = btn.innerText;
     btn.innerText = "✅ Copied!";
     btn.style.background = "#22c55e"; 
@@ -455,9 +474,7 @@ function copyText(btn) {
       btn.style.background = "#334155"; 
     }, 2000);
   }).catch(err => {
-    // Fallback if clipboard fails
     alert("Copy failed! Please copy manually.");
-    console.error('Error copying text: ', err);
   });
 }
 
@@ -465,19 +482,15 @@ function copyText(btn) {
    TAB LOGIC
    ===================================================== */
 function showTab(tabName) {
-  // Clear Search when switching tabs
   document.getElementById('searchInput').value = "";
-  filterContent(); // Reset filters
+  filterContent(); 
 
-  // Hide all sections
   document.getElementById('links-section').classList.remove('active');
   document.getElementById('prompts-section').classList.remove('active');
   
-  // Reset buttons
   let buttons = document.getElementsByClassName('tab-btn');
   for(let btn of buttons){ btn.classList.remove('active'); }
 
-  // Show selected
   if(tabName === 'links') {
     document.getElementById('links-section').classList.add('active');
     buttons[0].classList.add('active');
@@ -500,6 +513,43 @@ if(visits === null) visits = 1;
 else visits = parseInt(visits) + 1;
 localStorage.setItem("harry_visits", visits);
 document.getElementById("count").innerText = visits;
+
+/* =====================================================
+   TYPEWRITER EFFECT SCRIPT
+   ===================================================== */
+// Yaha words change kar sakte ho jo type honge
+const words = ["Coder 💻", "Gamer 🎮", "Student 📚", "Harry ⚡"];
+let i = 0;
+let timer;
+
+function typeWriter() {
+  const text = words[i];
+  const element = document.querySelector(".typing-text");
+  let currentText = element.innerHTML;
+  
+  if (currentText.length < text.length) {
+    element.innerHTML = text.substring(0, currentText.length + 1);
+    timer = setTimeout(typeWriter, 100); 
+  } else {
+    setTimeout(eraseText, 1500); 
+  }
+}
+
+function eraseText() {
+  const element = document.querySelector(".typing-text");
+  let currentText = element.innerHTML;
+
+  if (currentText.length > 0) {
+    element.innerHTML = currentText.substring(0, currentText.length - 1);
+    timer = setTimeout(eraseText, 50); 
+  } else {
+    i = (i + 1) % words.length; 
+    typeWriter();
+  }
+}
+
+// Start animation
+typeWriter();
 </script>
 
 </body>
