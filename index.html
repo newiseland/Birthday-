@@ -21,7 +21,7 @@ body {
   justify-content: center;
   align-items: flex-start;
   padding: 40px 0;
-  overflow-x: hidden;
+  overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 /* =====================================================
@@ -83,7 +83,9 @@ body::before{
   padding:32px 20px;
   text-align:center;
   animation:neonGlow 3.5s infinite;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 10;
 }
 
 .followers{
@@ -270,16 +272,16 @@ body::before{
 .no-results { display: none; color: #94a3b8; font-size: 14px; margin-top: 10px; }
 
 /* =====================================================
-   TYPEWRITER STYLES (NEW)
+   TYPEWRITER STYLES
    ===================================================== */
 .tagline {
   color: #a5b4fc;
   font-size: 14px;
   margin-bottom: 22px;
-  height: 20px; /* Fix height taaki jump na kare */
+  height: 20px; 
 }
 .typing-text {
-  color: #22d3ee; /* Neon Blue color for changing text */
+  color: #22d3ee; 
   font-weight: bold;
 }
 .cursor {
@@ -292,6 +294,166 @@ body::before{
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
+}
+
+/* =====================================================
+   🔥 NEW: PROJECT SECTION STYLES (BREATHING BUTTON)
+   ===================================================== */
+@keyframes breathe {
+  0% { transform: scale(1); box-shadow: 0 0 10px rgba(34, 211, 238, 0.4); }
+  50% { transform: scale(1.05); box-shadow: 0 0 25px rgba(99, 102, 241, 0.6), 0 0 50px rgba(34, 211, 238, 0.4); }
+  100% { transform: scale(1); box-shadow: 0 0 10px rgba(34, 211, 238, 0.4); }
+}
+
+.project-btn-container {
+  width: 92%;
+  max-width: 420px;
+  z-index: 10;
+  margin-bottom: 10px;
+}
+
+.project-trigger-btn {
+  width: 100%;
+  padding: 18px;
+  background: linear-gradient(90deg, #4f46e5, #06b6d4);
+  color: white;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  font-size: 14px;
+  animation: breathe 2s infinite ease-in-out; /* Breathing Effect */
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.project-trigger-btn:hover {
+  filter: brightness(1.2);
+}
+
+/* =====================================================
+   🔥 NEW: PROJECT OVERLAY (POPUP)
+   ===================================================== */
+.project-overlay {
+  position: fixed;
+  inset: 0;
+  background: #020617;
+  z-index: 9999;
+  overflow-y: auto;
+  transform: translateY(100%); /* Hidden by default */
+  transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.project-overlay.open {
+  transform: translateY(0); /* Slide Up */
+}
+
+.project-header {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #334155;
+  padding-bottom: 15px;
+}
+
+.project-header h2 {
+  color: #22d3ee;
+  margin: 0;
+  font-size: 24px;
+  text-shadow: 0 0 10px rgba(34, 211, 238, 0.5);
+}
+
+.close-project-btn {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* GRID LAYOUT FOR PROJECTS */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  width: 100%;
+  max-width: 800px;
+  padding-bottom: 40px;
+}
+
+.project-card {
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.3s;
+  position: relative;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  border-color: #6366f1;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
+
+.project-img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-bottom: 1px solid #334155;
+}
+
+.project-info {
+  padding: 15px;
+}
+
+.project-title {
+  color: #fff;
+  font-size: 18px;
+  margin: 0 0 8px 0;
+  font-weight: 700;
+}
+
+.project-desc {
+  color: #94a3b8;
+  font-size: 13px;
+  line-height: 1.4;
+  margin-bottom: 15px;
+}
+
+.visit-btn {
+  display: inline-block;
+  width: 100%;
+  padding: 10px;
+  background: transparent;
+  border: 1px solid #22d3ee;
+  color: #22d3ee;
+  text-align: center;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.visit-btn:hover {
+  background: #22d3ee;
+  color: #000;
 }
 
 </style>
@@ -365,7 +527,7 @@ body::before{
       </a>
 
       <a class="btn ɢɪᴛʜᴜʙ filter-item" href="https://github.com/SIDHIMUSIC" target="_blank">
-        <svg class="icon" viewBox="0 0 496 512"><path d="M248 8C111 8 0 119 0 256c0 110.9 69.8 204.4 166.8 237.7 12.2 2.3 16.6-5.2 16.6-11.6 0-5.6-.3-24.3-.3-44.1-67.8 14.6-82.1-32.7-82.1-32.7-11.1-28.3-27.1-35.8-27.1-35.8-22.1-15.1 1.6-14.8 1.6-14.8 24.3 1.6 37.1 24.9 37.1 24.9 21.6 37.1 56.8 26.4 70.8 20.1 2.3-15.8 8.5-26.4 15.5-32.4-54.1-6.1-111-27.1-111-120.5 0-26.4 9.4-48.1 24.9-65.1-2.6-6.1-11.1-30.5 2.3-63.5 0 0 20.1-6.4 65.8 24.9 19-5.2 39.4-7.8 59.6-7.8s40.6 2.6 59.6 7.8c45.7-31.3 65.8-24.9 65.8-24.9 13.4 33 4.9 57.4 2.3 63.5 15.5 17 24.9 38.7 24.9 65.1 0 93.7-56.8 114.4-111 120.5 8.8 7.5 16.6 22.1 16.6 44.6 0 32.4-.3 58.5-.3 66.5 0 6.4 4.3 14.2 16.9 11.6C426.2 460.4 496 366.9 496 256 496 119 385 8 248 8Z"/></svg>
+        <svg class="icon" viewBox="0 0 496 512"><path d="M248 8C111 8 0 119 0 256c0 110.9 69.8 204.4 166.8 237.7 12.2 2.3 16.6-5.2 16.6-11.6 0-5.6-.3-24.3-.3-44.1-67.8 14.6-82.1-32.7-82.1-32.7-11.1-28.3-27.1-35.8-27.1-35.8-22.1-15.1 1.6-14.8 1.6-14.8 24.3 1.6 37.1 24.9 37.1 24.9 37.1 24.9 21.6 37.1 56.8 26.4 70.8 20.1 2.3-15.8 8.5-26.4 15.5-32.4-54.1-6.1-111-27.1-111-120.5 0-26.4 9.4-48.1 24.9-65.1-2.6-6.1-11.1-30.5 2.3-63.5 0 0 20.1-6.4 65.8 24.9 19-5.2 39.4-7.8 59.6-7.8s40.6 2.6 59.6 7.8c45.7-31.3 65.8-24.9 65.8-24.9 13.4 33 4.9 57.4 2.3 63.5 15.5 17 24.9 38.7 24.9 65.1 0 93.7-56.8 114.4-111 120.5 8.8 7.5 16.6 22.1 16.6 44.6 0 32.4-.3 58.5-.3 66.5 0 6.4 4.3 14.2 16.9 11.6C426.2 460.4 496 366.9 496 256 496 119 385 8 248 8Z"/></svg>
         ɢ ɪ ᴛ ʜ ᴜ ʙ
       </a>
 
@@ -468,13 +630,64 @@ Keep everything exactly the same — only enhance quality..</div>
 
     <div id="noResults" class="no-results">No matches found...</div>
 
+  </div> <div class="project-btn-container">
+    <button class="project-trigger-btn" onclick="openProjects()">
+      ⚡ Click Here For My Projects ⚡
+    </button>
+  </div>
 
-    <div class="counter">🌍 Visitors: <span id="count">0</span></div>
-    <div class="copyright">© 2026 ʜᴀʀʀʏ ᴀsʜᴜ</div>
+  <div class="counter">🌍 Visitors: <span id="count">0</span></div>
+  <div class="copyright">© 2026 ʜᴀʀʀʏ ᴀsʜᴜ</div>
+
+</div>
+
+<div class="project-overlay" id="projectOverlay">
+  
+  <div class="project-header">
+    <h2>💻 My Projects</h2>
+    <button class="close-project-btn" onclick="closeProjects()">✖ Close</button>
+  </div>
+
+  <div class="project-grid">
+
+    <div class="project-card">
+      <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1000" class="project-img" alt="Project 1">
+      <div class="project-info">
+        <h3 class="project-title">Coding Chatbot</h3>
+        <p class="project-desc">A smart AI chatbot built with Python. Solves queries instantly.</p>
+        <a href="#" class="visit-btn">View Project 🚀</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <img src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7?q=80&w=1000" class="project-img" alt="Project 2">
+      <div class="project-info">
+        <h3 class="project-title">Neon Portfolio</h3>
+        <p class="project-desc">My personal website design with glassmorphism effects.</p>
+        <a href="#" class="visit-btn">View Project 🚀</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1000" class="project-img" alt="Project 3">
+      <div class="project-info">
+        <h3 class="project-title">Gaming Hub</h3>
+        <p class="project-desc">A community site for Free Fire gamers to connect.</p>
+        <a href="#" class="visit-btn">View Project 🚀</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000" class="project-img" alt="Project 4">
+      <div class="project-info">
+        <h3 class="project-title">Data Dashboard</h3>
+        <p class="project-desc">Visualizing live data with React & Charts.</p>
+        <a href="#" class="visit-btn">View Project 🚀</a>
+      </div>
+    </div>
 
   </div>
 </div>
-
 <div class="popup" id="ffPopup">
   <div class="popup-box">
     <h3>🔥 Free Fire Profile</h3>
@@ -574,6 +787,16 @@ function closeFF(){ document.getElementById("ffPopup").style.display="none"; }
 function openNotify(){ document.getElementById("notifyPopup").style.display="flex"; }
 function closeNotify(){ document.getElementById("notifyPopup").style.display="none"; }
 
+/* =====================================================
+   🔥 NEW: PROJECT POPUP LOGIC
+   ===================================================== */
+function openProjects() {
+  document.getElementById("projectOverlay").classList.add("open");
+}
+function closeProjects() {
+  document.getElementById("projectOverlay").classList.remove("open");
+}
+
 let visits = localStorage.getItem("harry_visits");
 if(visits === null) visits = 1;
 else visits = parseInt(visits) + 1;
@@ -583,7 +806,6 @@ document.getElementById("count").innerText = visits;
 /* =====================================================
    TYPEWRITER EFFECT SCRIPT
    ===================================================== */
-// Yaha words change kar sakte ho jo type honge
 const words = ["Coder 💻", "Gamer 🎮", "Student 📚", "Harry ⚡"];
 let i = 0;
 let timer;
