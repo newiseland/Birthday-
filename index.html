@@ -455,6 +455,44 @@ body::before{
   background: #22d3ee;
   color: #000;
 }
+   /* ========= PROJECT UPGRADE ========= */
+
+/* Neon Project Title */
+.project-title{
+  font-weight:900;
+  background:linear-gradient(90deg,#22d3ee,#6366f1,#ec4899,#22d3ee);
+  background-size:300% 300%;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:projectNeon 4s linear infinite;
+  text-shadow:0 0 12px rgba(34,211,238,.7);
+}
+@keyframes projectNeon{
+  0%{background-position:0%}
+  50%{background-position:100%}
+  100%{background-position:0%}
+}
+
+/* Animated Badge */
+.project-badge{
+  animation:badgePulse 1.8s infinite ease-in-out;
+  box-shadow:0 0 15px rgba(34,211,238,.7);
+}
+@keyframes badgePulse{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.15)}
+  100%{transform:scale(1)}
+}
+
+/* Typing Caption */
+.typing-caption{
+  min-height:42px;
+  color:#94a3b8;
+  font-size:13px;
+}
+.project-card:hover .typing-caption{
+  color:#e5e7eb;
+}
 
 </style>
 </head>
@@ -699,7 +737,9 @@ Keep everything exactly the same — only enhance quality..</div>
       <div class="project-img-wrapper"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=500" class="project-img"></div>
       <div class="project-info">
         <h3 class="project-title">Valentine's Love App</h3>
-        <p class="project-desc">A premium 7-day Valentine surprise web app with password protection and smooth UI.</p>
+        <p class="project-desc typing-caption"
+data-text="A premium 7-day Valentine surprise web app with password protection and smooth UI.">
+        </p>
         <div class="project-tags"><span>HTML5</span><span>CSS3</span><span>JS</span></div>
         <div class="project-links">
           <a href="https://sidhimusic.github.io/Valentine-s-gift-/" class="pl-live">Live Demo</a>
@@ -713,7 +753,9 @@ Keep everything exactly the same — only enhance quality..</div>
       <div class="project-img-wrapper"><img src="https://images.unsplash.com/photo-1587560699334-cc4ff634909a?q=80&w=500" class="project-img"></div>
       <div class="project-info">
         <h3 class="project-title">AI Smart Chatbot</h3>
-        <p class="project-desc">Advanced Telegram AI bot using Python & MongoDB for smart memory and auto-reply.</p>
+        <p class="project-desc typing-caption"
+data-text="Advanced Telegram AI bot using Python & MongoDB for smart memory and auto-reply.">
+         </p>
         <div class="project-tags"><span>Python</span><span>MongoDB</span><span>API</span></div>
         <div class="project-links">
           <a href="https://t.me/JULIET_MUSUCBOT" class="pl-live">Try Bot</a>
@@ -727,7 +769,9 @@ Keep everything exactly the same — only enhance quality..</div>
       <div class="project-img-wrapper"><img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=500" class="project-img"></div>
       <div class="project-info">
         <h3 class="project-title">E-Sports Hub</h3>
-        <p class="project-desc">A dedicated community dashboard for Free Fire players to track stats and sensitivity.</p>
+        <p class="project-desc typing-caption"
+data-text="A dedicated community dashboard for Free Fire players to track stats and sensitivity.">
+        </p>
         <div class="project-tags"><span>React</span><span>Firebase</span><span>Gaming</span></div>
         <div class="project-links">
           <a href="#" class="pl-live">View Hub</a>
@@ -741,7 +785,9 @@ Keep everything exactly the same — only enhance quality..</div>
       <div class="project-img-wrapper"><img src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7?q=80&w=500" class="project-img"></div>
       <div class="project-info">
         <h3 class="project-title">Neon Music Player</h3>
-        <p class="project-desc">Custom web music player with Spotify API integration and neon visualizer.</p>
+        <p class="project-desc typing-caption"
+data-text="Custom web music player with Spotify API integration and neon visualizer.">
+        </p>
         <div class="project-tags"><span>Spotify API</span><span>Web Audio</span></div>
         <div class="project-links">
           <a href="#" class="pl-live">Listen Now</a>
@@ -755,7 +801,9 @@ Keep everything exactly the same — only enhance quality..</div>
       <div class="project-img-wrapper"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=500" class="project-img"></div>
       <div class="project-info">
         <h3 class="project-title">Resume Builder Pro</h3>
-        <p class="project-desc">A professional LaTeX-based resume generator for developers and students.</p>
+        <p class="project-desc typing-caption"
+data-text="A professional LaTeX-based resume generator for developers and students.">
+        </p>
         <div class="project-tags"><span>LaTeX</span><span>Node.js</span></div>
         <div class="project-links">
           <a href="#" class="pl-live">Build CV</a>
@@ -919,7 +967,39 @@ function eraseText() {
     typeWriter();
   }
 }
+<script>
+/* ========= PROJECT AUTO TYPING ========= */
+function startProjectTyping(){
+  document.querySelectorAll(".typing-caption").forEach(caption=>{
+    const text = caption.dataset.text;
+    let speed = window.innerWidth < 600 ? 55 : 35;
+    caption.innerHTML="";
+    let i=0;
 
+    function type(){
+      if(i < text.length){
+        caption.innerHTML += text.charAt(i++);
+        setTimeout(type, speed);
+      }
+    }
+    type();
+
+    caption.closest(".project-card")
+      .addEventListener("mouseenter",()=>{
+        caption.innerHTML="";
+        i=0;
+        type();
+      });
+  });
+}
+
+/* Hook into existing openProjects */
+const oldOpenProjects = openProjects;
+openProjects = function(){
+  oldOpenProjects();
+  setTimeout(startProjectTyping,400);
+}
+</script>
 // Start animation
 typeWriter();
 </script>
