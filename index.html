@@ -930,39 +930,7 @@ function eraseText() {
     typeWriter();
   }
 }
-<script>
-/* ========= PROJECT AUTO TYPING ========= */
-function startProjectTyping(){
-  document.querySelectorAll(".typing-caption").forEach(caption=>{
-    const text = caption.dataset.text;
-    let speed = window.innerWidth < 600 ? 55 : 35;
-    caption.innerHTML="";
-    let i=0;
 
-    function type(){
-      if(i < text.length){
-        caption.innerHTML += text.charAt(i++);
-        setTimeout(type, speed);
-      }
-    }
-    type();
-
-    caption.closest(".project-card")
-      .addEventListener("mouseenter",()=>{
-        caption.innerHTML="";
-        i=0;
-        type();
-      });
-  });
-}
-
-/* Hook into existing openProjects */
-const oldOpenProjects = openProjects;
-openProjects = function(){
-  oldOpenProjects();
-  setTimeout(startProjectTyping,400);
-}
-</script>
 // Start animation
 typeWriter();
 </script>
