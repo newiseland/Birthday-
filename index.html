@@ -14,14 +14,14 @@
 body {
   margin: 0;
   min-height: 100vh;
-  font-family: Segoe UI, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: #020617;
   color: #fff;
   display: flex;
   justify-content: center;
   align-items: flex-start;
   padding: 40px 0;
-  overflow-x: hidden; /* Prevent horizontal scroll */
+  overflow-x: hidden;
 }
 
 /* =====================================================
@@ -47,7 +47,7 @@ body::before{
 }
 
 /* =====================================================
-   WRAPPER
+   WRAPPER & CARD DESIGN
    ===================================================== */
 .wrapper{
   display:flex;
@@ -67,14 +67,12 @@ body::before{
   padding: 0 20px;
 }
 
-/* =====================================================
-   CARD DESIGN
-   ===================================================== */
 @keyframes neonGlow{
   0%{box-shadow:0 0 12px #22d3ee}
   50%{box-shadow:0 0 35px #6366f1,0 0 60px #22d3ee}
   100%{box-shadow:0 0 12px #22d3ee}
 }
+
 .card{
   width:92%;
   max-width:420px;
@@ -214,7 +212,6 @@ body::before{
   transition: 0.2s;
   font-weight: 600;
 }
-.copy-btn:active { transform: scale(0.98); }
 
 /* Profile Image */
 .profile-img{
@@ -252,210 +249,81 @@ body::before{
 .ɪɴsᴛᴀɢʀᴀᴍ{color:#f472b6}
 .ᴛᴇʟᴇɢʀᴀᴍ{color:#38bdf8}
 .ɢɪᴛʜᴜʙ{color:#e5e7eb}
-.freefire {
-  color: #FFCC00; 
-  background: linear-gradient(135deg, #1e293b, #020617); 
-  border: 1px solid #334155;
-}
+.freefire { color: #FFCC00; }
 .notify{color:#22d3ee}
 
-/* Footer */
+/* Footer & Counter */
 .counter{ margin-top:18px; color:#22d3ee; font-size:14px; }
 .copyright{ margin-top:8px; font-size:12px; text-shadow:0 0 8px #22d3ee; }
 
-/* Popup */
+/* Popups */
 .popup{ position:fixed; inset:0; background:rgba(0,0,0,.85); display:none; align-items:center; justify-content:center; z-index:100; }
 .popup-box{ width:90%; max-width:360px; background:#0b1220; border-radius:20px; padding:20px; text-align:center; border: 1px solid #334155; }
 .close{ margin-top:14px; padding:12px; width:100%; border:none; border-radius:12px; font-weight:700; background:#22d3ee; color:#000; cursor: pointer; }
 
-/* No Results Msg */
-.no-results { display: none; color: #94a3b8; font-size: 14px; margin-top: 10px; }
+/* Typewriter */
+.tagline { color: #a5b4fc; font-size: 14px; margin-bottom: 22px; height: 20px; }
+.typing-text { color: #22d3ee; font-weight: bold; }
+.cursor { display: inline-block; width: 2px; background-color: #fff; margin-left: 2px; animation: blink 1s infinite; }
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
 /* =====================================================
-   TYPEWRITER STYLES
-   ===================================================== */
-.tagline {
-  color: #a5b4fc;
-  font-size: 14px;
-  margin-bottom: 22px;
-  height: 20px; 
-}
-.typing-text {
-  color: #22d3ee; 
-  font-weight: bold;
-}
-.cursor {
-  display: inline-block;
-  width: 2px;
-  background-color: #fff;
-  margin-left: 2px;
-  animation: blink 1s infinite;
-}
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
-/* =====================================================
-   🔥 NEW: PROJECT SECTION STYLES (BREATHING BUTTON)
+   PROJECTS SECTION STYLES
    ===================================================== */
 @keyframes breathe {
-  0% { transform: scale(1); box-shadow: 0 0 10px rgba(34, 211, 238, 0.4); }
+  0%, 100% { transform: scale(1); box-shadow: 0 0 10px rgba(34, 211, 238, 0.4); }
   50% { transform: scale(1.05); box-shadow: 0 0 25px rgba(99, 102, 241, 0.6), 0 0 50px rgba(34, 211, 238, 0.4); }
-  100% { transform: scale(1); box-shadow: 0 0 10px rgba(34, 211, 238, 0.4); }
 }
 
-.project-btn-container {
-  width: 92%;
-  max-width: 420px;
-  z-index: 10;
-  margin-bottom: 10px;
-}
+.project-btn-container { width: 92%; max-width: 420px; z-index: 10; margin-bottom: 10px; }
 
 .project-trigger-btn {
-  width: 100%;
-  padding: 18px;
+  width: 100%; padding: 18px;
   background: linear-gradient(90deg, #4f46e5, #06b6d4);
-  color: white;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  border: none;
-  border-radius: 16px;
-  cursor: pointer;
-  font-size: 14px;
-  animation: breathe 2s infinite ease-in-out; /* Breathing Effect */
-  transition: all 0.3s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
+  color: white; font-weight: 800; text-transform: uppercase;
+  border: none; border-radius: 16px; cursor: pointer;
+  animation: breathe 2s infinite ease-in-out;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
 }
 
-.project-trigger-btn:hover {
-  filter: brightness(1.2);
-}
-
-/* =====================================================
-   🔥 NEW: PROJECT OVERLAY (POPUP)
-   ===================================================== */
 .project-overlay {
-  position: fixed;
-  inset: 0;
-  background: #020617;
-  z-index: 9999;
-  overflow-y: auto;
-  transform: translateY(100%); /* Hidden by default */
+  position: fixed; inset: 0; background: #020617; z-index: 9999;
+  overflow-y: auto; transform: translateY(100%);
   transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  padding: 20px; display: flex; flex-direction: column; align-items: center;
 }
-
-.project-overlay.open {
-  transform: translateY(0); /* Slide Up */
-}
+.project-overlay.open { transform: translateY(0); }
 
 .project-header {
-  width: 100%;
-  max-width: 800px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 30px;
-  border-bottom: 1px solid #334155;
-  padding-bottom: 15px;
+  width: 100%; max-width: 800px; display: flex; justify-content: space-between;
+  align-items: center; margin-bottom: 30px; border-bottom: 1px solid #334155; padding-bottom: 15px;
 }
+.project-header h2 { color: #22d3ee; font-size: 24px; }
 
-.project-header h2 {
-  color: #22d3ee;
-  margin: 0;
-  font-size: 24px;
-  text-shadow: 0 0 10px rgba(34, 211, 238, 0.5);
-}
-
-.close-project-btn {
-  background: #ef4444;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 8px;
-  font-weight: bold;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-/* GRID LAYOUT FOR PROJECTS */
 .project-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-  width: 100%;
-  max-width: 800px;
-  padding-bottom: 40px;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px; width: 100%; max-width: 800px; padding-bottom: 40px;
 }
 
-.project-card {
-  background: #0f172a;
-  border: 1px solid #334155;
-  border-radius: 16px;
-  overflow: hidden;
-  transition: transform 0.3s;
-  position: relative;
-}
+.project-card { background: #0f172a; border: 1px solid #334155; border-radius: 16px; overflow: hidden; transition: 0.3s; }
+.project-card:hover { transform: translateY(-5px); border-color: #6366f1; }
+.project-img { width: 100%; height: 160px; object-fit: cover; border-bottom: 1px solid #334155; }
+.project-info { padding: 15px; }
+.project-title { color: #fff; font-size: 18px; margin: 0 0 8px 0; }
+.project-desc { color: #94a3b8; font-size: 13px; line-height: 1.4; margin-bottom: 15px; }
 
-.project-card:hover {
-  transform: translateY(-5px);
-  border-color: #6366f1;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-}
+.project-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.project-tags span { font-size: 11px; padding: 4px 10px; border-radius: 999px; background: #020617; border: 1px solid #334155; color: #22d3ee; }
 
-.project-img {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-  border-bottom: 1px solid #334155;
+.project-actions { display: flex; gap: 10px; }
+.project-actions a {
+  flex: 1; padding: 10px; font-size: 13px; font-weight: 700; text-align: center;
+  border-radius: 8px; text-decoration: none; transition: .3s;
 }
+.project-live { background: #22d3ee; color: #000; }
+.project-code { border: 1px solid #22d3ee; color: #22d3ee; }
 
-.project-info {
-  padding: 15px;
-}
-
-.project-title {
-  color: #fff;
-  font-size: 18px;
-  margin: 0 0 8px 0;
-  font-weight: 700;
-}
-
-.project-desc {
-  color: #94a3b8;
-  font-size: 13px;
-  line-height: 1.4;
-  margin-bottom: 15px;
-}
-
-.visit-btn {
-  display: inline-block;
-  width: 100%;
-  padding: 10px;
-  background: transparent;
-  border: 1px solid #22d3ee;
-  color: #22d3ee;
-  text-align: center;
-  border-radius: 8px;
-  text-decoration: none;
-  font-size: 13px;
-  font-weight: 600;
-  transition: 0.3s;
-}
-
-.visit-btn:hover {
-  background: #22d3ee;
-  color: #000;
-}
-
+.no-results { display: none; color: #94a3b8; font-size: 14px; margin-top: 10px; }
 </style>
 </head>
 
@@ -470,15 +338,11 @@ body::before{
   </div>
 
   <div class="card">
-
     <div style="margin-bottom: 20px;">
       <div class="followers">1.3K FOLLOWERS</div>
-
       <div class="social-row">
         <a href="https://youtube.com/@akgamers0001" target="_blank">
-          <svg class="social-svg" viewBox="0 0 24 24" fill="#FF0000"> 
-            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/><path fill="#FFF" d="M9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-          </svg>
+          <svg class="social-svg" viewBox="0 0 24 24" fill="#FF0000"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
         </a>
         <a href="https://www.instagram.com/harryashu_/" target="_blank">
           <svg class="social-svg" viewBox="0 0 24 24">
@@ -487,16 +351,10 @@ body::before{
           </svg>
         </a>
         <a href="https://t.me/SANATANI_BACHA" target="_blank">
-          <svg class="social-svg" viewBox="0 0 24 24" fill="#229ED9"> 
-            <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.16.16-.295.295-.605.295l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.944z"/>
-          </svg>
+          <svg class="social-svg" viewBox="0 0 24 24" fill="#229ED9"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.16.16-.295.295-.605.295l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.944z"/></svg>
         </a>
       </div>
-       
-      <div class="collab">
-        ⭐ PAID COLLABORATION ONLY ⭐<br>
-        ✉️ Contact for Collab
-      </div>  
+      <div class="collab">⭐ PAID COLLABORATION ONLY ⭐<br>✉️ Contact for Collab</div>  
       <img src="profile.jpg" alt="Harry" class="profile-img">
     </div>
 
@@ -505,10 +363,7 @@ body::before{
     </div>
 
     <h1>𓆩◕🅷︎𝐀𝐑𝐑𝐘◕𓆪 =‌𐏓 𝄗⃝🇮🇳</h1>
-    
-    <div class="tagline">
-      I am a <span class="typing-text"></span><span class="cursor">|</span>
-    </div>
+    <div class="tagline">I am a <span class="typing-text"></span><span class="cursor">|</span></div>
 
     <div class="tab-container">
       <button class="tab-btn active" onclick="showTab('links')">🔗 Links</button>
@@ -517,120 +372,46 @@ body::before{
 
     <div id="links-section" class="content-section active">
       <a class="btn ɪɴsᴛᴀɢʀᴀᴍ filter-item" href="https://www.instagram.com/harryashu_/" target="_blank">
-        <svg class="icon" viewBox="0 0 24 24"><path d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm10 2c1.65 0 3 1.35 3 3v10c0 1.65-1.35 3-3 3H7c-1.65 0-3-1.35-3-3V7c0-1.65 1.35-3 3-3h10zm-5 3a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6zm4.8-.9a1.1 1.1 0 11-2.2 0 1.1 1.1 0 012.2 0z"/></svg>
         ɪ ɴ ꜱ ᴛ ᴀ ɢ ʀ ᴀ ᴍ
       </a>
-
       <a class="btn ᴛᴇʟᴇɢʀᴀᴍ filter-item" href="https://t.me/SANATANI_BACHA" target="_blank">
-        <svg class="icon" viewBox="0 0 496 512"><path d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8Zm121.8 169.9-40.7 192.2c-3.1 13.8-11.3 17.2-22.9 10.7l-63.3-46.7-30.5 29.3c-3.4 3.4-6.3 6.3-12.9 6.3l4.6-65.2 118.7-107.2c5.2-4.6-1.1-7.2-8.1-2.6L169.4 285.6l-62.4-19.5c-13.6-4.3-13.8-13.6 2.9-20.1l244.3-94.2c11.3-4.1 21.2 2.7 17.6 20.1Z"/></svg>
         ᴛ ᴇ ʟ ᴇ ɢ ʀ ᴀ ᴍ
       </a>
-
       <a class="btn ɢɪᴛʜᴜʙ filter-item" href="https://github.com/SIDHIMUSIC" target="_blank">
-        <svg class="icon" viewBox="0 0 496 512"><path d="M248 8C111 8 0 119 0 256c0 110.9 69.8 204.4 166.8 237.7 12.2 2.3 16.6-5.2 16.6-11.6 0-5.6-.3-24.3-.3-44.1-67.8 14.6-82.1-32.7-82.1-32.7-11.1-28.3-27.1-35.8-27.1-35.8-22.1-15.1 1.6-14.8 1.6-14.8 24.3 1.6 37.1 24.9 37.1 24.9 37.1 24.9 21.6 37.1 56.8 26.4 70.8 20.1 2.3-15.8 8.5-26.4 15.5-32.4-54.1-6.1-111-27.1-111-120.5 0-26.4 9.4-48.1 24.9-65.1-2.6-6.1-11.1-30.5 2.3-63.5 0 0 20.1-6.4 65.8 24.9 19-5.2 39.4-7.8 59.6-7.8s40.6 2.6 59.6 7.8c45.7-31.3 65.8-24.9 65.8-24.9 13.4 33 4.9 57.4 2.3 63.5 15.5 17 24.9 38.7 24.9 65.1 0 93.7-56.8 114.4-111 120.5 8.8 7.5 16.6 22.1 16.6 44.6 0 32.4-.3 58.5-.3 66.5 0 6.4 4.3 14.2 16.9 11.6C426.2 460.4 496 366.9 496 256 496 119 385 8 248 8Z"/></svg>
         ɢ ɪ ᴛ ʜ ᴜ ʙ
       </a>
-
       <div class="btn freefire filter-item" onclick="openFF()">
-        <img src="https://img.icons8.com/color/48/free-fire.png" alt="FF Logo" class="icon" style="filter: none; border-radius: 0;">
+        <img src="https://img.icons8.com/color/48/free-fire.png" alt="FF" class="icon" style="filter: none;">
         ɢᴀʀᴇɴᴀ • ғʀᴇᴇ ғɪʀᴇ
       </div>
-      
       <div class="btn notify filter-item" onclick="openNotify()">
         🔔 ɴᴏᴛɪғʏ ᴍᴇ
       </div>
     </div>
 
-        <div id="prompts-section" class="content-section">
-      
-      <h3 style="color:#fde68a; margin-top:0; margin-bottom:15px; font-size:15px; text-align:center; border-bottom: 1px solid #334155; padding-bottom: 10px;">
-        ✨ Best Prompts Collection (2026)
-      </h3>
-
+    <div id="prompts-section" class="content-section">
+      <h3 style="color:#fde68a; font-size:15px; border-bottom:1px solid #334155; padding-bottom:10px;">✨ Best Prompts Collection (2026)</h3>
       <div class="prompt-box filter-item">
         <div class="prompt-title">👫 Future Duo (Boy & Girl 2026)</div>
-        <div class="prompt-content">A young cyberpunk couple sitting on a skyscraper rooftop overlooking a neon-soaked futuristic city in the year 2026. The boy has a glowing bionic arm, and the girl wears smart-tech streetwear. They are sharing a holographic data interface. Highly detailed, cinematic lighting, 8k resolution, Unreal Engine 5 render style.</div>
+        <div class="prompt-content">A young cyberpunk couple sitting on a skyscraper rooftop overlooking a neon-soaked futuristic city.</div>
         <button class="copy-btn" onclick="copyText(this)">📋 Copy Prompt</button>
       </div>
-
       <div class="prompt-box filter-item">
-        <div class="prompt-title">📸 Ultimate Gamer Portrait (Solo)</div>
-        <div class="prompt-content">Hyper-realistic close-up portrait of a young professional E-sports gamer (boy or girl) in 2026. They are wearing a tactical headset with LED accents. The reflection of a intense game screen is visible in their eyes. Sweat and sharp focus on face details. Neon rim lighting from side, dark background, 8k quality.</div>
+        <div class="prompt-title">📸 Ultimate Gamer Portrait</div>
+        <div class="prompt-content">Hyper-realistic close-up portrait of a professional E-sports gamer in 2026 with tactical headset.</div>
         <button class="copy-btn" onclick="copyText(this)">📋 Copy Prompt</button>
       </div>
-
       <div class="prompt-box filter-item">
-        <div class="prompt-title">🎮 Best Game Concept Idea</div>
-        <div class="prompt-content">Idea for a multiplayer survival game set in a mythological Indian dystopia. Players must use futuristic tech to capture ancient spirits. Features: High-stakes extraction mechanics (like Escape from Tarkov but magic-based), dynamic weather that changes monster behavior, and deep crafting system using spirit energy.</div>
+        <div class="prompt-title">🔥 stylish animated sticker</div>
+        <div class="prompt-content">Create a high-quality 2D cartoon sticker animation keeping my exact identity reference...</div>
         <button class="copy-btn" onclick="copyText(this)">📋 Copy Prompt</button>
       </div>
-
-      <div class="prompt-box filter-item">
-        <div class="prompt-title">💻 Pro Coder Automation Task</div>
-        <div class="prompt-content">Write a Python script using the OpenAI API and YouTube Data API. The script should take a YouTube video URL as input, generate a concise 5-bullet point summary of the video content, and automatically create a Twitter thread draft with relevant hashtags.</div>
-        <button class="copy-btn" onclick="copyText(this)">📋 Copy Prompt</button>
-      </div>
-
-      <div class="prompt-box filter-item">
-        <div class="prompt-title">🔥 Free Fire Bio</div>
-        <div class="prompt-content">Headshot King 👑 | No Love 💔 | Push to Grandmaster | Respect ✊</div>
-        <button class="copy-btn" onclick="copyText(this)">📋 Copy Prompt</button>
-      </div>
-           <div class="prompt-box filter-item">
-        <div class="prompt-title">🔥 Stylish emoji</div>
-        <div class="prompt-content">Using my uploaded photo as the exact identity reference, create a high-quality 2D cartoon sticker animation. Keep my original face structure, jawline, nose, eyes, lips, skin tone, hairstyle, age, and facial proportions unchanged. Convert me into a clean Bitmoji-style 2D illustration with bold outlines, soft shading, vibrant colors, and a transparent background. Create 9 smooth animated sticker poses high FPS with consistent design: Happy - bright smile, sparkling eyes, soft bounce. Blush -shy smile, rosy cheeks, head scratch. Angry furrowed brows, clenched teeth, steam puff. Sad droopy eyes, tear roll, slow head drop. Excited wide eyes, big grin, star sparkles. Hungry tired eyes, tongue out, floating food icons. Dead - X eyes, pale tone, soul floating out. Laugh eyes closed, wide laugh, shoulder shake. Cry big watery eyes, heavy tears, trembling chin.</div>
-        <button class="copy-btn" onclick="copyText(this)">📋 Copy Prompt</button>
-           </div>
-           <div class="prompt-box filter-item">
-        <div class="prompt-title">🔥 sunlight add sunset</div>
-        <div class="prompt-content">Transform this image into a dramatic
-sunset HDR style while preserving
-100% of the original content. Do NOT change, add, remove, replace, or distort any object, subject, animal, person, building, tree, road shadow, reflection, or background Maintain the exact same
-composition framing perspective
-camera angle subject positions
-shapes and proportions Colors must look realistic, not oversaturated, not artificial.
-No fantasy effects, no extra clouds, no extra sun, no lens flares, no fog, no rain unfess slready present. This is a strict color and lighting
-transformation only, Photorealistic
-sunset HDR edit. Original image
-must remain perfectly recognizable</div>
-        <button class="copy-btn" onclick="copyText(this)">📋 Copy Prompt</button>
-           </div>
-           <div class="prompt-box filter-item">
-        <div class="prompt-title">🔥 night mode light </div>
-        <div class="prompt-content">Apply An Ethereal Lighting Filter To The Uploaded Photo While Fully Preserving Every Original Detail Of The Photo Unchanged Except For Lighting, Glow, And Color Mood. Add Diffused Sunbeams Striking The Subject's Skin, Creating A Glowing Highlight On Cheekbones, Nose Bridge, Lips, And Hair Strands. Maintain Clear Separation Between Bright Sunlit Areas And Soft, Deep Shadows To Create A Cinematic High-Contrast Mood. Inject Subtle Lens Bloom, Light Haze, And A Thin Layer Of Atmospheric Glow Around The Face And Shoulders. Render Skin With Luminous Translucency And Gentle Peachy Tones. Enhance Stray Hair Strands Backlit By Sunlight. Color-Grade With Slightly Lowered Saturation, And Gentle Film -Like Grain. Keep The Overall Background Intact But Allow Sunlight Flares And Soft Bokeh To Wrap Naturally Around The Subject. The Result Should Look Like A Soft, Ethereal Daydream-Sunlit, Delicate, And Cinematic. Hard Rule: Do Not Change The Face And Hairs Of The Subject.</div>
-        <button class="copy-btn" onclick="copyText(this)">📋 Copy Prompt</button>
-           </div>
-         <div class="prompt-box filter-item">
-        <div class="prompt-title">ғᴏʀ ʙʟᴜʀʀᴇᴅ ᴘɪᴄ</div>
-        <div class="prompt-content">Ultra-premium professional image enhancement.
-
-Transform the uploaded low-quality, blurry image into extreme high-detail cinematic quality.
-
-Preserve 100% original identity, face structure, expression, pose, clothing, accessories, background, framing, and composition.
-Do NOT alter, redesign, replace, or add anything.
-
-Recover micro-details:
-
-sharp facial features
-natural skin texture
-visible pores
-realistic hair strands
-crisp eyes
-clean refined edges
-High-contrast clarity, deep depth, and balanced cinematic lighting.
-Poster-grade realism with dramatic but accurate detail.
-
-Output in 8K resolution, ProRes quality, studio-level sharpness.
-Photorealistic textures only. True-to-source enhancement only.
-Keep everything exactly the same — only enhance quality..</div>
-        <button class="copy-btn" onclick="copyText(this)">📋 Copy Prompt</button>
-      </div>
-
     </div>
 
     <div id="noResults" class="no-results">No matches found...</div>
+  </div>
 
-  </div> <div class="project-btn-container">
+  <div class="project-btn-container">
     <button class="project-trigger-btn" onclick="openProjects()">
       ⚡ Click Here For My Projects ⚡
     </button>
@@ -638,318 +419,46 @@ Keep everything exactly the same — only enhance quality..</div>
 
   <div class="counter">🌍 Visitors: <span id="count">0</span></div>
   <div class="copyright">© 2026 ʜᴀʀʀʏ ᴀsʜᴜ</div>
-
 </div>
 
-<!-- 🔽 SAME CODE ABOVE – NO CHANGE 🔽 -->
-<!-- ❗❗❗ ONLY PROJECT SECTION IMPROVED BELOW ❗❗❗ -->
-
-<style>
-/* ===== EXTRA PROFESSIONAL PROJECT STYLES ===== */
-.project-tags{
-  display:flex;
-  flex-wrap:wrap;
-  gap:6px;
-  margin-bottom:12px;
-}
-.project-tags span{
-  font-size:11px;
-  padding:4px 10px;
-  border-radius:999px;
-  background:#020617;
-  border:1px solid #334155;
-  color:#22d3ee;
-  font-weight:600;
-}
-.project-actions{
-  display:flex;
-  gap:10px;
-}
-.project-actions a{
-  flex:1;
-  padding:10px;
-  font-size:13px;
-  font-weight:700;
-  text-align:center;
-  border-radius:8px;
-  text-decoration:none;
-  transition:.3s;
-}
-.project-live{
-  background:#22d3ee;
-  color:#000;
-}
-.project-code{
-  border:1px solid #22d3ee;
-  color:#22d3ee;
-}
-.project-code:hover,
-.project-live:hover{
-  filter:brightness(1.15);
-}
-</style>
-
-<!-- ================= PROJECT OVERLAY (IMPROVED) ================= -->
 <div class="project-overlay" id="projectOverlay">
-  
   <div class="project-header">
     <h2>💻 My Projects</h2>
     <button class="close-project-btn" onclick="closeProjects()">✖ Close</button>
   </div>
-
   <div class="project-grid">
-
-    <!-- PROJECT 1 -->
-    <div class="project-card">
-      <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1000" class="project-img">
-      <div class="project-info">
-        <h3 class="project-title">AI Coding Chatbot</h3>
-        <p class="project-desc">
-          AI-powered chatbot engineered to instantly resolve coding
-          and automation-related queries with high accuracy.
-        </p>
-
-        <div class="project-tags">
-          <span>Python</span>
-          <span>AI</span>
-          <span>Automation</span>
-        </div>
-
-        <div class="project-actions">
-          <a href="https://sidhimusic.github.io/Valentine-s-gift-/" class="project-live">Live Demo</a>
-          <a href="https://github.com/SIDHIMUSIC" class="project-code">Source Code</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- PROJECT 2 -->
-    <div class="project-card">
-      <img src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7?q=80&w=1000" class="project-img">
-      <div class="project-info">
-        <h3 class="project-title">Neon Portfolio</h3>
-        <p class="project-desc">
-          Modern personal portfolio website featuring neon UI,
-          smooth animations and glassmorphism effects.
-        </p>
-
-        <div class="project-tags">
-          <span>HTML</span>
-          <span>CSS</span>
-          <span>JavaScript</span>
-        </div>
-
-        <div class="project-actions">
-          <a href="#" class="project-live">Live Demo</a>
-          <a href="#" class="project-code">Source Code</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- PROJECT 3 -->
-    <div class="project-card">
-      <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1000" class="project-img">
-      <div class="project-info">
-        <h3 class="project-title">Gaming Community Hub</h3>
-        <p class="project-desc">
-          A dedicated community platform for Free Fire gamers
-          to connect, collaborate and grow together.
-        </p>
-
-        <div class="project-tags">
-          <span>Gaming</span>
-          <span>Community</span>
-          <span>Web</span>
-        </div>
-
-        <div class="project-actions">
-          <a href="#" class="project-live">Live Demo</a>
-          <a href="#" class="project-code">Source Code</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- PROJECT 4 -->
-    <div class="project-card">
-      <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000" class="project-img">
-      <div class="project-info">
-        <h3 class="project-title">Data Analytics Dashboard</h3>
-        <p class="project-desc">
-          Interactive dashboard for visualizing live data
-          using charts and modern UI components.
-        </p>
-
-        <div class="project-tags">
-          <span>React</span>
-          <span>Charts</span>
-          <span>Analytics</span>
-        </div>
-
-        <div class="project-actions">
-          <a href="#" class="project-live">Live Demo</a>
-          <a href="#" class="project-code">Source Code</a>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div><!-- 🔽 SAME CODE ABOVE – NO CHANGE 🔽 -->
-<!-- ❗❗❗ ONLY PROJECT SECTION IMPROVED BELOW ❗❗❗ -->
-
-<style>
-/* ===== EXTRA PROFESSIONAL PROJECT STYLES ===== */
-.project-tags{
-  display:flex;
-  flex-wrap:wrap;
-  gap:6px;
-  margin-bottom:12px;
-}
-.project-tags span{
-  font-size:11px;
-  padding:4px 10px;
-  border-radius:999px;
-  background:#020617;
-  border:1px solid #334155;
-  color:#22d3ee;
-  font-weight:600;
-}
-.project-actions{
-  display:flex;
-  gap:10px;
-}
-.project-actions a{
-  flex:1;
-  padding:10px;
-  font-size:13px;
-  font-weight:700;
-  text-align:center;
-  border-radius:8px;
-  text-decoration:none;
-  transition:.3s;
-}
-.project-live{
-  background:#22d3ee;
-  color:#000;
-}
-.project-code{
-  border:1px solid #22d3ee;
-  color:#22d3ee;
-}
-.project-code:hover,
-.project-live:hover{
-  filter:brightness(1.15);
-}
-</style>
-
-<!-- ================= PROJECT OVERLAY (IMPROVED) ================= -->
-<div class="project-overlay" id="projectOverlay">
-  
-  <div class="project-header">
-    <h2>💻 My Projects</h2>
-    <button class="close-project-btn" onclick="closeProjects()">✖ Close</button>
-  </div>
-
-  <div class="project-grid">
-
-    <!-- PROJECT 1 -->
     <div class="project-card">
       <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1000" class="project-img">
       <div class="project-info">
         <h3 class="project-title">Static Web App</h3>
-        <p class="project-desc">
-          This is a romantic static web app designed for Valentine’s Week. It features a 7 Days of Love concept where each day’s surprise is locked and unlocked using a password. The app uses an attractive UI with cards, icons, and date-based sections. 
-        </p>
-
-        <div class="project-tags">
-          <span>Python</span>
-          <span>Web App</span>
-          <span>Automation</span>
-        </div>
-
+        <p class="project-desc">Romantic static web app designed for Valentine’s Week with locked surprises.</p>
+        <div class="project-tags"><span>HTML</span><span>CSS</span><span>JS</span></div>
         <div class="project-actions">
           <a href="https://sidhimusic.github.io/Valentine-s-gift-/" class="project-live">Live Demo</a>
-          <a href="https://github.com/SIDHIMUSIC/Valentine-s-gift-" class="project-code">Source Code</a>
+          <a href="https://github.com/SIDHIMUSIC/Valentine-s-gift-" class="project-code">Code</a>
         </div>
       </div>
     </div>
-
-    <!-- PROJECT 2 -->
     <div class="project-card">
       <img src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7?q=80&w=1000" class="project-img">
       <div class="project-info">
-        <h3 class="project-title">Ai chatbot</h3>
-        <p class="project-desc">
-          An AI-powered chatbot that delivers instant, intelligent, and interactive responses through a simple web interface.
-        </p>
-
-        <div class="project-tags">
-          <span>HTML</span>
-          <span>CSS</span>
-          <span>JavaScript</span>
-        </div>
-
+        <h3 class="project-title">AI Chatbot</h3>
+        <p class="project-desc">An AI-powered chatbot that delivers intelligent and interactive responses.</p>
+        <div class="project-tags"><span>Python</span><span>AI</span><span>API</span></div>
         <div class="project-actions">
           <a href="https://t.me/JULIET_MUSUCBOT" class="project-live">Live Demo</a>
-          <a href="https://github.com/SIDHIMUSIC/freeetgapi" class="project-code">Source Code</a>
+          <a href="https://github.com/SIDHIMUSIC/freeetgapi" class="project-code">Code</a>
         </div>
       </div>
     </div>
-
-    <!-- PROJECT 3 -->
-    <div class="project-card">
-      <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1000" class="project-img">
-      <div class="project-info">
-        <h3 class="project-title">Gaming Community Hub</h3>
-        <p class="project-desc">
-          A dedicated community platform for Free Fire gamers
-          to connect, collaborate and grow together.
-        </p>
-
-        <div class="project-tags">
-          <span>Gaming</span>
-          <span>Community</span>
-          <span>Web</span>
-        </div>
-
-        <div class="project-actions">
-          <a href="#" class="project-live">Live Demo</a>
-          <a href="#" class="project-code">Source Code</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- PROJECT 4 -->
-    <div class="project-card">
-      <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000" class="project-img">
-      <div class="project-info">
-        <h3 class="project-title">Data Analytics Dashboard</h3>
-        <p class="project-desc">
-          Interactive dashboard for visualizing live data
-          using charts and modern UI components.
-        </p>
-
-        <div class="project-tags">
-          <span>React</span>
-          <span>Charts</span>
-          <span>Analytics</span>
-        </div>
-
-        <div class="project-actions">
-          <a href="#" class="project-live">Live Demo</a>
-          <a href="#" class="project-code">Source Code</a>
-        </div>
-      </div>
-    </div>
-
   </div>
 </div>
 
-  </div>
-</div>
 <div class="popup" id="ffPopup">
   <div class="popup-box">
     <h3>🔥 Free Fire Profile</h3>
     <p>UID: <b>605458977</b></p>
-    <img src="ff.jpg" alt="FF Profile" style="width:100%; border-radius:14px; margin-top:12px; box-shadow:0 0 20px rgba(250,204,21,0.6);">
+    <img src="ff.jpg" alt="FF" style="width:100%; border-radius:14px; margin-top:12px;">
     <button class="close" onclick="closeFF()">Close</button>
   </div>
 </div>
@@ -964,137 +473,61 @@ Keep everything exactly the same — only enhance quality..</div>
 </div>
 
 <script>
-/* =====================================================
-   SEARCH FUNCTIONALITY
-   ===================================================== */
 function filterContent() {
   let input = document.getElementById('searchInput').value.toLowerCase();
   let items = document.querySelectorAll('.filter-item');
   let visibleCount = 0;
-
   items.forEach(item => {
     if (item.innerText.toLowerCase().includes(input)) {
-      if(item.classList.contains('prompt-box')){
-        item.style.display = "block";
-      } else {
-        item.style.display = "flex";
-      }
+      item.style.display = item.classList.contains('prompt-box') ? "block" : "flex";
       visibleCount++;
-    } else {
-      item.style.display = "none";
-    }
+    } else { item.style.display = "none"; }
   });
-
-  let noRes = document.getElementById("noResults");
-  if(visibleCount === 0 && input !== "") {
-    noRes.style.display = "block";
-  } else {
-    noRes.style.display = "none";
-  }
+  document.getElementById("noResults").style.display = (visibleCount === 0 && input !== "") ? "block" : "none";
 }
 
-/* =====================================================
-   COPY FUNCTION
-   ===================================================== */
 function copyText(btn) {
-  let textDiv = btn.previousElementSibling; 
-  let textToCopy = textDiv.innerText;
-
+  let textToCopy = btn.previousElementSibling.innerText;
   navigator.clipboard.writeText(textToCopy).then(() => {
-    let originalText = btn.innerText;
-    btn.innerText = "✅ Copied!";
-    btn.style.background = "#22c55e"; 
-    
-    setTimeout(() => {
-      btn.innerText = originalText;
-      btn.style.background = "#334155"; 
-    }, 2000);
-  }).catch(err => {
-    alert("Copy failed! Please copy manually.");
+    let old = btn.innerText; btn.innerText = "✅ Copied!";
+    btn.style.background = "#22c55e";
+    setTimeout(() => { btn.innerText = old; btn.style.background = "#334155"; }, 2000);
   });
 }
 
-/* =====================================================
-   TAB LOGIC
-   ===================================================== */
 function showTab(tabName) {
-  document.getElementById('searchInput').value = "";
-  filterContent(); 
-
-  document.getElementById('links-section').classList.remove('active');
-  document.getElementById('prompts-section').classList.remove('active');
-  
-  let buttons = document.getElementsByClassName('tab-btn');
-  for(let btn of buttons){ btn.classList.remove('active'); }
-
-  if(tabName === 'links') {
-    document.getElementById('links-section').classList.add('active');
-    buttons[0].classList.add('active');
-  } else {
-    document.getElementById('prompts-section').classList.add('active');
-    buttons[1].classList.add('active');
-  }
+  document.getElementById('links-section').classList.toggle('active', tabName === 'links');
+  document.getElementById('prompts-section').classList.toggle('active', tabName === 'prompts');
+  document.querySelectorAll('.tab-btn').forEach((btn, idx) => {
+    btn.classList.toggle('active', (tabName==='links' && idx===0) || (tabName==='prompts' && idx===1));
+  });
 }
 
-/* =====================================================
-   POPUPS & UTILS
-   ===================================================== */
 function openFF(){ document.getElementById("ffPopup").style.display="flex"; }
 function closeFF(){ document.getElementById("ffPopup").style.display="none"; }
 function openNotify(){ document.getElementById("notifyPopup").style.display="flex"; }
 function closeNotify(){ document.getElementById("notifyPopup").style.display="none"; }
+function openProjects() { document.getElementById("projectOverlay").classList.add("open"); }
+function closeProjects() { document.getElementById("projectOverlay").classList.remove("open"); }
 
-/* =====================================================
-   🔥 NEW: PROJECT POPUP LOGIC
-   ===================================================== */
-function openProjects() {
-  document.getElementById("projectOverlay").classList.add("open");
-}
-function closeProjects() {
-  document.getElementById("projectOverlay").classList.remove("open");
-}
-
-let visits = localStorage.getItem("harry_visits");
-if(visits === null) visits = 1;
-else visits = parseInt(visits) + 1;
+// Visitor Counter
+let visits = localStorage.getItem("harry_visits") || 0;
+visits = parseInt(visits) + 1;
 localStorage.setItem("harry_visits", visits);
 document.getElementById("count").innerText = visits;
 
-/* =====================================================
-   TYPEWRITER EFFECT SCRIPT
-   ===================================================== */
+// Typewriter
 const words = ["Coder 💻", "Gamer 🎮", "Student 📚", "Harry ⚡"];
-let i = 0;
-let timer;
-
-function typeWriter() {
-  const text = words[i];
-  const element = document.querySelector(".typing-text");
-  let currentText = element.innerHTML;
-  
-  if (currentText.length < text.length) {
-    element.innerHTML = text.substring(0, currentText.length + 1);
-    timer = setTimeout(typeWriter, 100); 
-  } else {
-    setTimeout(eraseText, 1500); 
-  }
+let wordIdx = 0, charIdx = 0, isDeleting = false;
+function type() {
+  const current = words[wordIdx];
+  const speed = isDeleting ? 50 : 100;
+  document.querySelector(".typing-text").innerHTML = isDeleting ? current.substring(0, charIdx--) : current.substring(0, charIdx++);
+  if (!isDeleting && charIdx > current.length) { isDeleting = true; setTimeout(type, 1500); }
+  else if (isDeleting && charIdx < 0) { isDeleting = false; wordIdx = (wordIdx + 1) % words.length; charIdx = 0; setTimeout(type, 500); }
+  else { setTimeout(type, speed); }
 }
-
-function eraseText() {
-  const element = document.querySelector(".typing-text");
-  let currentText = element.innerHTML;
-
-  if (currentText.length > 0) {
-    element.innerHTML = currentText.substring(0, currentText.length - 1);
-    timer = setTimeout(eraseText, 50); 
-  } else {
-    i = (i + 1) % words.length; 
-    typeWriter();
-  }
-}
-
-// Start animation
-typeWriter();
+type();
 </script>
 
 </body>
