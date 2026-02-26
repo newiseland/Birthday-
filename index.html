@@ -868,7 +868,7 @@ async function loadGitHubProjects() {
 
     grid.innerHTML = "";
 
-    repos.slice(0, 6).forEach(repo => {
+    repos.forEach(repo => {
       const card = document.createElement("div");
       card.className = "project-card";
 
