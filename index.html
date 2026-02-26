@@ -827,20 +827,82 @@ function openNotify(){ document.getElementById("notifyPopup").style.display="fle
 function closeNotify(){ document.getElementById("notifyPopup").style.display="none"; }
 
 /* =====================================================
-   🔥 NEW: PROJECT POPUP LOGIC
+   🔥 NEW: PROJECT POPUP LOGIC yaha hha h
    ===================================================== */
+   let projectsLoaded = false;
+
 function openProjects() {
   document.getElementById("projectOverlay").classList.add("open");
+
+  // 🔥 load GitHub projects only once
+  if (!projectsLoaded) {
+    loadGitHubProjects();
+    projectsLoaded = true;
+  }
 }
+
 function closeProjects() {
   document.getElementById("projectOverlay").classList.remove("open");
 }
 
+/* ================= VISITOR COUNTER ================= */
+
 let visits = localStorage.getItem("harry_visits");
-if(visits === null) visits = 1;
+
+if (visits === null) visits = 1;
 else visits = parseInt(visits) + 1;
+
 localStorage.setItem("harry_visits", visits);
+
 document.getElementById("count").innerText = visits;
+
+   /* ================= AUTO FETCH GITHUB ================= */
+
+async function loadGitHubProjects() {
+  const username = "SIDHIMUSIC";
+  const grid = document.getElementById("projectGrid");
+
+  try {
+    const res = await fetch(`https://api.github.com/users/${username}/repos?sort=updated`);
+    const repos = await res.json();
+
+    grid.innerHTML = "";
+
+    repos.slice(0, 6).forEach(repo => {
+      const card = document.createElement("div");
+      card.className = "project-card";
+
+      card.innerHTML = `
+        <img src="https://opengraph.githubassets.com/1/${username}/${repo.name}" class="project-img">
+
+        <div class="project-info">
+          <h3 class="project-title">${repo.name}</h3>
+          <p class="project-desc">${repo.description || "No description"}</p>
+
+          <div class="project-tags">
+            <span>${repo.language || "Code"}</span>
+            <span>⭐ ${repo.stargazers_count}</span>
+          </div>
+
+          <div class="project-actions">
+            <a href="${repo.html_url}" target="_blank" class="project-code">Code</a>
+            ${
+              repo.homepage
+                ? `<a href="${repo.homepage}" target="_blank" class="project-live">Live</a>`
+                : ""
+            }
+          </div>
+        </div>
+      `;
+
+      grid.appendChild(card);
+    });
+
+  } catch (error) {
+    grid.innerHTML = "<p style='color:red;'>Failed to load</p>";
+  }
+}
+   
 
 /* =====================================================
    TYPEWRITER EFFECT SCRIPT
