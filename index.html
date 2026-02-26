@@ -455,7 +455,44 @@ body::before{
   background: #22d3ee;
   color: #000;
 }
+.skeleton-card {
+  height: 220px;
+  border-radius: 16px;
+  background: linear-gradient(90deg, #0f172a 25%, #1e293b 50%, #0f172a 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  margin-bottom: 20px;
+}
 
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+   .neon-text {
+  color: #22d3ee;
+  text-shadow: 
+    0 0 5px #22d3ee,
+    0 0 10px #22d3ee,
+    0 0 20px #6366f1,
+    0 0 40px #6366f1;
+  font-weight: 800;
+  letter-spacing: 1px;
+   }
+   .project-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  border-color: #22d3ee;
+  box-shadow: 
+    0 0 20px rgba(34,211,238,0.3),
+    0 0 40px rgba(99,102,241,0.2);
+   }
+   .project-live, .project-code {
+  position: relative;
+  overflow: hidden;
+}
+
+.project-live:hover, .project-code:hover {
+  box-shadow: 0 0 15px #22d3ee;
+}
 </style>
 </head>
 
@@ -722,7 +759,9 @@ Keep everything exactly the same — only enhance quality..</div>
     <button class="close-project-btn" onclick="closeProjects()">✖ Close</button>
   </div>
 <div class="project-grid" id="projectGrid">
-  <p style="color:#94a3b8;">Loading projects...</p>
+  <div class="skeleton-card"></div>
+  <div class="skeleton-card"></div>
+  <div class="skeleton-card"></div>
 </div>
 
   </div>
@@ -881,7 +920,7 @@ async function loadGitHubProjects() {
      onerror="this.src='https://via.placeholder.com/400x200/020617/22d3ee?text=No+Preview'">
 
         <div class="project-info">
-          <h3 class="project-title">${repo.name}</h3>
+          <h3 class="project-title neon-text">${repo.name.replace(/-/g, " ")}</h3>
           <p class="project-desc">${repo.description || "No description"}</p>
 
           <div class="project-tags">
