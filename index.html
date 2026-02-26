@@ -892,7 +892,9 @@ async function loadGitHubProjects() {
           <div class="project-actions">
             <a href="${repo.html_url}" target="_blank" class="project-code">Code</a>
             ${
-              repo.homepage
+              const liveUrl = repo.homepage 
+  ? repo.homepage 
+  : `https://${username}.github.io/${repo.name}/`;
                 ? `<a href="${repo.homepage}" target="_blank" class="project-live">Live</a>`
                 : ""
             }
