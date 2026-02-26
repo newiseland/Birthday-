@@ -867,8 +867,11 @@ async function loadGitHubProjects() {
     const repos = await res.json();
 
     grid.innerHTML = "";
+     const filteredRepos = repos.filter(repo => 
+  !repo.fork && repo.name !== username.toLowerCase() + ".github.io"
+);
 
-    repos.forEach(repo => {
+    filteredRepos.forEach(repo => {
       const card = document.createElement("div");
       card.className = "project-card";
 
