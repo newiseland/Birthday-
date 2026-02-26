@@ -455,7 +455,43 @@ body::before{
   background: #22d3ee;
   color: #000;
 }
+.project-card {
+  background: linear-gradient(145deg, #0f172a, #020617);
+  border: 1px solid #1e293b;
+  border-radius: 18px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  position: relative;
+}
 
+.project-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent, rgba(34,211,238,0.15), transparent);
+  opacity: 0;
+  transition: 0.4s;
+}
+
+.project-card:hover::before {
+  opacity: 1;
+}
+
+.project-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  border-color: #22d3ee;
+  box-shadow: 0 0 25px rgba(34,211,238,0.2);
+}
+
+.project-img {
+  height: 180px;
+  object-fit: cover;
+  transition: 0.3s;
+}
+
+.project-card:hover .project-img {
+  transform: scale(1.05);
+}
 </style>
 </head>
 
@@ -863,20 +899,22 @@ async function loadGitHubProjects() {
   const grid = document.getElementById("projectGrid");
 
   try {
-    const res = await fetch(`https://api.github.com/users/${username}/repos?sort=updated`);
+    const res = await fetch(`https://api.github.com/users/${username}/repos?sort=stars&per_page=100`);
     const repos = await res.json();
 
     grid.innerHTML = "";
 
-    repos.slice(0, 6).forEach(repo => {
+      filteredRepos.forEach(repo => {
       const card = document.createElement("div");
       card.className = "project-card";
 
       card.innerHTML = `
-        <img src="https://opengraph.githubassets.com/1/${username}/${repo.name}" class="project-img">
+        <img src="https://opengraph.githubassets.com/1/${username}/${repo.name}" 
+     class="project-img"
+     onerror="this.src='https://via.placeholder.com/400x200/020617/22d3ee?text=No+Preview'">
 
         <div class="project-info">
-          <h3 class="project-title">${repo.name}</h3>
+          <h3 class="project-title">${repo.name.replace(/-/g, " ")}</h3>
           <p class="project-desc">${repo.description || "No description"}</p>
 
           <div class="project-tags">
